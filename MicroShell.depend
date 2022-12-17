@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1669822107 source:j:\desktop\microshell\main.c
+	<stdio.h>
+	<stdlib.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+
+1669822107 
+
+1671030888 source:/home/students/s481827/Desktop/MicroShell/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+
+1671108107 source:/home/osboxes/Documents/codeblocks/micro/MicroShell/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+
+1671105780 source:c:\users\gogos\onedrive\desktop\microshell\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+
