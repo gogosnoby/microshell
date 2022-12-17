@@ -43,7 +43,18 @@ int main()
         }
         else if(strcmp(command,"exit")==0)
             exit(0);
+        else if(command[0]=='c' && command[1]=='d')
+        {
+            if(command[2]==0)
+            {
+                printf("cd");
+            }
+            else if(command[3]=='.' && command[4]=='.')
+            {
+                printf("cd ..");
+            }
 
+        }
         else if(strcmp(command,"cat")==0)
         {
             char plik[100];
