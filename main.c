@@ -20,6 +20,8 @@
 #define BUFFER_SIZE 1024
 #define _XOPEN_SOURCE 500
 
+int getlogin_r(char *name, size_t namesize);
+
 int main()
 {
     while(true)
@@ -64,6 +66,10 @@ int main()
             getcwd(path, sizeof(path));
             printf("%s\n", path);
         }
+
+
+        else
+            printf("command %s not found.\n", command);
     }
 
     return 0;
