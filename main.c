@@ -18,6 +18,7 @@
 #define RESET "\033[0m"
 
 #define BUFFER_SIZE 1024
+#define _XOPEN_SOURCE 500
 
 int main()
 {
@@ -25,6 +26,8 @@ int main()
     {
         char command[10];
         char currentpath[1024];
+        char *login(void);
+        getlogin_r(*login, sizeof(login));
         getcwd(currentpath, sizeof(currentpath));
         printf(KGRN "[%s] $ " RESET, currentpath);
         fgets(command, sizeof command, stdin);
