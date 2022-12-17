@@ -48,3 +48,13 @@
 	<fcntl.h>
 	<unistd.h>
 
+1671281243 source:/home/osboxes/Documents/GitHub/microshell/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+

@@ -26,8 +26,9 @@ int main()
     {
         char command[10];
         char currentpath[1024];
-        char *login(void);
-        getlogin_r(*login, sizeof(login));
+        char login[1024];
+        getlogin_r(login, 1024);
+        printf(KBLU "%s:" RESET, login);
         getcwd(currentpath, sizeof(currentpath));
         printf(KGRN "[%s] $ " RESET, currentpath);
         fgets(command, sizeof command, stdin);
