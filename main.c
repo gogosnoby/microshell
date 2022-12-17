@@ -18,25 +18,27 @@
 #define RESET "\033[0m"
 
 #define BUFFER_SIZE 1024
-// zmiana
+
 int main()
 {
-    while(true) 
+    while(true)
     {
         char command[10];
         char currentpath[1024];
         getcwd(currentpath, sizeof(currentpath));
         printf(KGRN "[%s] $ " RESET, currentpath);
         fgets(command, sizeof command, stdin);
-        if(strcmp(command,"help\n")==0)
+        if(command[strlen(command)-1=='\n'])
+            command[strlen(command)-1]=0;
+        if(strcmp(command,"help")==0)
         {
             printf(KRED "\n===MicroShell===\nAutor: Oskar Winiarski\n" RESET);
             printf(KRED "\nObslugiwane komendy :\nhelp\nexit\n\n" RESET);
         }
-        else if(strcmp(command,"exit\n")==0)
+        else if(strcmp(command,"exit")==0)
             exit(0);
 
-        else if(strcmp(command,"cat\n")==0)
+        else if(strcmp(command,"cat")==0)
         {
             char plik[100];
             scanf("%s", plik);
@@ -52,7 +54,7 @@ int main()
 
             close(fd_in);
         }
-        else if(strcmp(command,"pwd\n")==0)
+        else if(strcmp(command,"pwd")==0)
         {
             char path[1024];
             getcwd(path, sizeof(path));

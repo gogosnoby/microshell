@@ -38,3 +38,13 @@
 	<fcntl.h>
 	<unistd.h>
 
+1671278187 source:c:\git\microshell\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+
