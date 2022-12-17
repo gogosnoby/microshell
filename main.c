@@ -26,61 +26,94 @@ int main()
 {
     while(true)
     {
-        char command[10];
+        char command[100];
         char currentpath[1024];
         char login[1024];
+        char *maincommand;
+        char separator[] = " ";
+
+
         getlogin_r(login, 1024);
         printf(KBLU "%s:" RESET, login);
         getcwd(currentpath, sizeof(currentpath));
         printf(KGRN "[%s] $ " RESET, currentpath);
-        fgets(command, sizeof command, stdin);
-        if(command[strlen(command)-1=='\n'])
+
+        fgets(command, 100, stdin);
+        if(command[strlen(command)-1=='\n'] && strlen(command)!=1)
             command[strlen(command)-1]=0;
-        if(strcmp(command,"help")==0)
+        else
+            continue;
+        char temp[strlen(command)];
+        strcpy(temp,command);
+        maincommand=strtok(temp, separator);
+
+
+        if(strcmp(maincommand,"help")==0)
         {
-            printf(KRED "\n===MicroShell===\nAutor: Oskar Winiarski\n" RESET);
-            printf(KRED "\nObslugiwane komendy :\nhelp\nexit\n\n" RESET);
+            if(strlen(command)==strlen(maincommand))
+            {
+                printf(KRED "\n===MicroShell===\nAutor: Oskar Winiarski\n" RESET);
+                printf(KRED "\nObslugiwane komendy :\nhelp\nexit\n\n" RESET);
+            }
+            else if(strlen(command)!=strlen(maincommand))
+                printf("Wrong argument for command %s.\n", maincommand);
         }
-        else if(strcmp(command,"exit")==0)
-            exit(0);
-        else if(command[0]=='c' && command[1]=='d')
+        else if(strcmp(maincommand,"exit")==0)
         {
-            if(command[2]==0)
+            if(strlen(command)==strlen(maincommand))
             {
-                printf("cd");
+                exit(0);
             }
-            else if(command[3]=='.' && command[4]=='.')
-            {
-                printf("cd ..");
-            }
-
+            else if(strlen(command)!=strlen(maincommand))
+                printf("Wrong argument for command %s.\n", maincommand);
         }
-        else if(strcmp(command,"cat")==0)
+        else if(strcmp(maincommand,"cd")==0)
         {
-            char plik[100];
-            scanf("%s", plik);
-            char buffer[BUFFER_SIZE];
-            int fd_in, num;
-
-            fd_in = open(plik, O_RDONLY);
-
-            while ((num = read(fd_in, &buffer, BUFFER_SIZE)) > 0)
+            char dotdot[2]="..";
+            maincommand=strtok(NULL,separator);
+            if(maincommand!=NULL)
             {
-                write(STDOUT_FILENO, &buffer, num);
-            }
+                while(maincommand!=NULL)
+                {
+                    if(strcmp(maincommand,dotdot)==0)
+                    {
+                        chdir("..");
+                        break;
+                    }
+                    else
+                    {
+                        if(chdir(maincommand)==-1)
+                            printf("No such directory.\n");
+                        else
+                            chdir(maincommand);
+                    }
 
-            close(fd_in);
+                    maincommand=strtok(NULL,separator);
+                }
+            }
+            else
+            {
+                printf("domowy\n");
+            }
         }
-        else if(strcmp(command,"pwd")==0)
+        else if(strcmp(maincommand,"cat")==0)
+        {
+            char *plik;
+            plik=strtok(NULL,separator);
+            maincommand=strtok(NULL,separator);
+            if(maincommand==NULL)
+            {
+                printf("%s git\n", plik);
+            }
+        }
+        else if(strcmp(maincommand,"pwd")==0)
         {
             char path[1024];
             getcwd(path, sizeof(path));
             printf("%s\n", path);
         }
-
-
         else
-            printf("command %s not found.\n", command);
+            printf("command %s not found.\n", maincommand);
     }
 
     return 0;
